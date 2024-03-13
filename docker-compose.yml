@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  db:
+    build: ./docker/mysql
+    ports:
+      - 13308:3306
+    volumes:
+      - db-store:/var/lib/mysql
+volumes:
+  db-store:

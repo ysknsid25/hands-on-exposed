@@ -31,4 +31,11 @@ class SelectDataAccessor {
             Employee.lastName,
         ).selectAll().toList()
     }
+
+    fun selectPartnerAllNames(): List<ResultRow> {
+        return Partner.slice(
+            Partner.firstName,
+            Partner.lastName,
+        ).selectAll().toList()
+    }
 }

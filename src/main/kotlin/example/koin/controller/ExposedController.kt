@@ -26,4 +26,9 @@ class ExposedController(
         val message = selectService.getAllEmployeesNames()
         call.respondText(message)
     }
+
+    suspend fun getAllPartnersNames(call: ApplicationCall) {
+        val message = selectService.getAllPartnersNames()
+        call.respondText(message)
+    }
 }

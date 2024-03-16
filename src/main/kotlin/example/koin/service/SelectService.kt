@@ -12,4 +12,14 @@ class SelectService(
         }
         return "社員の名前は「${resultRow[Employee.lastName]} ${resultRow[Employee.firstName]}」です！"
     }
+
+    fun getAllEmployees(): String {
+        val resultRows = executeQuery {
+            selectDataAccessor.selectEmployeeAll()
+        }
+        val employeeNames = resultRows.joinToString {
+            "${it[Employee.lastName]} ${it[Employee.firstName]}"
+        }
+        return employeeNames
+    }
 }

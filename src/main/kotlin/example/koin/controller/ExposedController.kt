@@ -11,4 +11,9 @@ class ExposedController(
         val message = selectService.getInorin()
         call.respondText(message)
     }
+
+    suspend fun getAllEmployees(call: ApplicationCall) {
+        val message = selectService.getAllEmployees()
+        call.respondText(message)
+    }
 }

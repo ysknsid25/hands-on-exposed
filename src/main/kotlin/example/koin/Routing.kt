@@ -15,5 +15,8 @@ fun Application.configureRouting() {
         get("/inorin"){
             exposedController.getInorin(call)
         }
+        get("/allEmployees"){
+            exposedController.getAllEmployees(call)
+        }
     }
 }

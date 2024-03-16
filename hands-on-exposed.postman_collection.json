@@ -1,0 +1,32 @@
+{
+	"info": {
+		"_postman_id": "87d34daa-e1fd-4dd8-8a57-75bdecf1d664",
+		"name": "hands-on-exposed",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22084079"
+	},
+	"item": [
+		{
+			"name": "HelloWorld",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8080/",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

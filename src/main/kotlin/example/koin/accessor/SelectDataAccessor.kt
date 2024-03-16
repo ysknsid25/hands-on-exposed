@@ -1,6 +1,7 @@
 package example.koin.accessor
 
 import example.koin.data.model.Employee
+import example.koin.data.model.Partner
 import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import org.jetbrains.exposed.sql.select
@@ -18,5 +19,9 @@ class SelectDataAccessor {
 
     fun selectEmployeeAll(): List<ResultRow> {
         return Employee.selectAll().toList()
+    }
+
+    fun selectPartnerAll(): List<ResultRow> {
+        return Partner.selectAll().toList()
     }
 }

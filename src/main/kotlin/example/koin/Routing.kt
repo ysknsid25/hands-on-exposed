@@ -21,5 +21,8 @@ fun Application.configureRouting() {
         get("/allPartners"){
             exposedController.getAllPartners(call)
         }
+        get("/allEmployeesNames"){
+            exposedController.getAllEmployeesNames(call)
+        }
     }
 }

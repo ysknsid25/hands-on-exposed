@@ -33,4 +33,14 @@ class SelectService(
         }
         return employeeNames
     }
+
+    fun getAllEmployeesNames() : String {
+        val resultRows = executeQuery {
+            selectDataAccessor.selectEmployeeAllNames()
+        }
+        val employeeNames = resultRows.joinToString {
+            "${it[Employee.lastName]} ${it[Employee.firstName]}"
+        }
+        return employeeNames
+    }
 }

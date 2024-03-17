@@ -107,7 +107,7 @@ class SelectDataAccessor {
     fun selectHowManyApplyExpenseByEmployee(): List<ResultRow>{
         return Expense.slice(
             Expense.employeeId,
-            Expense.employeeId.count().alias("cnt"),
+            Expense.employeeId.count(),
         ).selectAll().groupBy(Expense.employeeId).toList()
     }
 }

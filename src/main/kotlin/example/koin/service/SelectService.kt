@@ -4,7 +4,7 @@ import example.koin.accessor.SelectDataAccessor
 import example.koin.data.model.Employee
 import example.koin.data.model.Expense
 import example.koin.data.model.Partner
-import org.jetbrains.exposed.sql.count
+import org.jetbrains.exposed.sql.*
 
 class SelectService(
     private val selectDataAccessor: SelectDataAccessor
@@ -107,11 +107,11 @@ class SelectService(
     }
 
     fun getHowManyApplyExpenseByEmployee(): String {
-        val resultRows = executeQuery {
-            selectDataAccessor.selectHowManyApplyExpenseByEmployee()
-        }
-        val howManyApply = resultRows.joinToString {
-            "${it[Expense.employeeId]}: ${it[Expense.employeeId.count()]}"
+        val howManyApply = executeQuery {
+            val resultRows = selectDataAccessor.selectHowManyApplyExpenseByEmployee()
+            resultRows.joinToString {
+                "${it[Expense.employeeId]}: ${it[Expense.employeeId.count()]}"
+            }
         }
         return howManyApply
     }

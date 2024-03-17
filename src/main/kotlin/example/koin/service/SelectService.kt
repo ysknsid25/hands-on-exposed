@@ -141,4 +141,14 @@ class SelectService(
         }
         return employeeNames
     }
+
+    fun getPartnerLimitOffset():String{
+        val partnerNames = executeQuery {
+            val resultRows = selectDataAccessor.selectPartnerLimitOffset()
+            resultRows.joinToString {
+                "${it[Partner.lastName]} ${it[Partner.firstName]}"
+            }
+        }
+        return partnerNames
+    }
 }

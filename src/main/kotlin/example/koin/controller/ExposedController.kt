@@ -73,4 +73,9 @@ class ExposedController(
         val message = selectService.getEmployeeLimitOffset()
         call.respondText(message)
     }
+
+    suspend fun getPartnerLimitOffset(call: ApplicationCall){
+        val message = selectService.getPartnerLimitOffset()
+        call.respondText(message)
+    }
 }

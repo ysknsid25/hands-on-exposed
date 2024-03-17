@@ -124,4 +124,11 @@ class SelectDataAccessor {
             Employee.lastName,
         ).selectAll().limit(3, offset = 1).toList()
     }
+
+    fun selectPartnerLimitOffset(): List<ResultRow> {
+        return Partner.slice(
+            Partner.firstName,
+            Partner.lastName,
+        ).selectAll().limit(3, offset = 1).toList()
+    }
 }

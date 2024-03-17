@@ -45,5 +45,8 @@ fun Application.configureRouting() {
         get("/howManyApplyExpenseByEmployee"){
             exposedController.getHowManyApplyExpenseByEmployee(call)
         }
+        get("/howMuchExpenseByEmployee"){
+            exposedController.getHowMuchExpenseByEmployee(call)
+        }
     }
 }

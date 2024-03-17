@@ -110,4 +110,11 @@ class SelectDataAccessor {
             Expense.employeeId.count(),
         ).selectAll().groupBy(Expense.employeeId).toList()
     }
+
+    fun selectHowMuchExpenseByEmployee(): List<ResultRow>{
+        return Expense.slice(
+            Expense.employeeId,
+            Expense.expense.sum(),
+        ).selectAll().groupBy(Expense.employeeId).toList()
+    }
 }

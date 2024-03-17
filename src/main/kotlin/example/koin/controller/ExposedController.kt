@@ -63,4 +63,9 @@ class ExposedController(
         val message = selectService.getHowManyApplyExpenseByEmployee()
         call.respondText(message)
     }
+
+    suspend fun getHowMuchExpenseByEmployee(call: ApplicationCall){
+        val message = selectService.getHowMuchExpenseByEmployee()
+        call.respondText(message)
+    }
 }

@@ -31,4 +31,10 @@ class ExposedController(
         val message = selectService.getAllPartnersNames()
         call.respondText(message)
     }
+
+    suspend fun getPartnerNameById(call: ApplicationCall){
+        val id = call.parameters["partnerId"]?.toIntOrNull() ?: -1
+        val message = selectService.selectPartnerById(id)
+        call.respondText(message)
+    }
 }

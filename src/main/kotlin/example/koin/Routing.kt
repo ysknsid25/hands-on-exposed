@@ -27,5 +27,8 @@ fun Application.configureRouting() {
         get("/allPartnersNames"){
             exposedController.getAllPartnersNames(call)
         }
+        get("/partnerNameById"){
+            exposedController.getPartnerNameById(call)
+        }
     }
 }

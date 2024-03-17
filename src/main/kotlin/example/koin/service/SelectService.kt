@@ -7,7 +7,7 @@ import example.koin.data.model.Partner
 class SelectService(
     private val selectDataAccessor: SelectDataAccessor
 ): TransactionService() {
-    fun getInorin(): String{
+    fun getInorin(): String {
         val resultRow = executeQuery {
             selectDataAccessor.selectEmployeeById(1)
         }
@@ -34,7 +34,7 @@ class SelectService(
         return employeeNames
     }
 
-    fun getAllEmployeesNames() : String {
+    fun getAllEmployeesNames(): String {
         val resultRows = executeQuery {
             selectDataAccessor.selectEmployeeAllNames()
         }
@@ -44,7 +44,7 @@ class SelectService(
         return employeeNames
     }
 
-    fun getAllPartnersNames() : String {
+    fun getAllPartnersNames(): String {
         val resultRows = executeQuery {
             selectDataAccessor.selectPartnerAllNames()
         }
@@ -52,5 +52,12 @@ class SelectService(
             "${it[Partner.lastName]} ${it[Partner.firstName]}"
         }
         return partnerNames
+    }
+
+    fun selectPartnerById(id: Int): String {
+        val resultRow = executeQuery {
+            selectDataAccessor.selectPartnerById(id)
+        } ?: return "該当するパートナーが見つかりません。"
+        return "パートナーの名前は「${resultRow[Partner.lastName]} ${resultRow[Partner.firstName]}」です！"
     }
 }

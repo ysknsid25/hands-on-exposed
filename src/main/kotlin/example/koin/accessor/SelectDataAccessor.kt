@@ -38,4 +38,13 @@ class SelectDataAccessor {
             Partner.lastName,
         ).selectAll().toList()
     }
+
+    fun selectPartnerById(id: Int): ResultRow? {
+        return Partner.slice(
+            Partner.firstName,
+            Partner.lastName,
+        ).select(
+            (Partner.partnerId eq id)
+        ).firstOrNull()
+    }
 }

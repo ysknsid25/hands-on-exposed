@@ -7,9 +7,10 @@ class SelectService(
     private val selectDataAccessor: SelectDataAccessor
 ): TransactionService() {
     fun getInorin(): String{
-        val resultRow = executeQuery {
-            selectDataAccessor.selectEmployeeById(1)
+        val message = executeQuery {
+            val resultRow = selectDataAccessor.selectEmployeeById(1)
+            "社員の名前は「${resultRow[Employee.lastName]} ${resultRow[Employee.firstName]}」です！"
         }
-        return "社員の名前は「${resultRow[Employee.lastName]} ${resultRow[Employee.firstName]}」です！"
+        return message
     }
 }

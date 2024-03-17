@@ -4,7 +4,7 @@ import org.jetbrains.exposed.sql.Table
 import org.jetbrains.exposed.sql.javatime.datetime
 
 object Expense : Table("EXPENSES") {
-    val id = integer("EMPLOYEE_ID") //社員ID
+    val id = integer("ID") //ID
     val employeeId = integer("EMPLOYEE_ID") //部署ID
     val expense = integer("EXPENSE") //経費
     val propose = varchar("PROPOSE", 256) //目的

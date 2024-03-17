@@ -83,4 +83,14 @@ class SelectService(
         }
         return partnerNames
     }
+
+    fun getEmployeeBySorted(): String {
+        val resultRows = executeQuery {
+            selectDataAccessor.selectEmployeeBySorted()
+        }
+        val partnerNames = resultRows.joinToString {
+            "${it[Employee.lastName]} ${it[Employee.firstName]}"
+        }
+        return partnerNames
+    }
 }

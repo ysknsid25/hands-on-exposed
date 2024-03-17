@@ -2,14 +2,11 @@ package example.koin.accessor
 
 import example.koin.data.model.Employee
 import example.koin.data.model.Partner
-import org.jetbrains.exposed.sql.ResultRow
+import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.inList
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.like
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.neq
-import org.jetbrains.exposed.sql.compoundOr
-import org.jetbrains.exposed.sql.select
-import org.jetbrains.exposed.sql.selectAll
 
 class SelectDataAccessor {
     fun selectEmployeeById(id: Int): ResultRow {
@@ -84,5 +81,15 @@ class SelectDataAccessor {
 //        ).select(
 //            whereCondition
 //        ).toList()
+    }
+
+    fun selectEmployeeBySorted(): List<ResultRow> {
+        return Employee.slice(
+            Employee.firstName,
+            Employee.lastName,
+        ).selectAll().orderBy(
+            Pair(Employee.departmentId, SortOrder.DESC),
+            Pair(Employee.lastName, SortOrder.ASC),
+        ).toList()
     }
 }

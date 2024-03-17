@@ -48,4 +48,9 @@ class ExposedController(
         val message = selectService.getEmployeeNameOfGeneralOrAccounting()
         call.respondText(message)
     }
+
+    suspend fun getEmployeeBySorted(call: ApplicationCall){
+        val message = selectService.getEmployeeBySorted()
+        call.respondText(message)
+    }
 }

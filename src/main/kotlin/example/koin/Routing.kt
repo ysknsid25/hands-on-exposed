@@ -36,5 +36,8 @@ fun Application.configureRouting() {
         get("/employeeNameOfGeneralOrAccounting"){
             exposedController.getEmployeeNameOfGeneralOrAccounting(call)
         }
+        get("/employeeBySorted"){
+            exposedController.getEmployeeBySorted(call)
+        }
     }
 }

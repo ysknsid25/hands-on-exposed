@@ -43,4 +43,9 @@ class ExposedController(
         val message = selectService.getAllPartnersNamesByLikeKeyword(keyword)
         call.respondText(message)
     }
+
+    suspend fun getEmployeeNameOfGeneralOrAccounting(call: ApplicationCall){
+        val message = selectService.getEmployeeNameOfGeneralOrAccounting()
+        call.respondText(message)
+    }
 }

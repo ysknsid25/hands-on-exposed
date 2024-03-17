@@ -73,4 +73,14 @@ class SelectService(
         }
         return partnerNames
     }
+
+    fun getEmployeeNameOfGeneralOrAccounting(): String {
+        val resultRows = executeQuery {
+            selectDataAccessor.selectEmployeeNameOfGeneralOrAccounting()
+        }
+        val partnerNames = resultRows.joinToString {
+            "${it[Employee.lastName]} ${it[Employee.firstName]}"
+        }
+        return partnerNames
+    }
 }

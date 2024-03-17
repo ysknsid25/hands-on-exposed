@@ -4,7 +4,10 @@ import example.koin.data.model.Employee
 import example.koin.data.model.Partner
 import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
+import org.jetbrains.exposed.sql.SqlExpressionBuilder.inList
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.like
+import org.jetbrains.exposed.sql.SqlExpressionBuilder.neq
+import org.jetbrains.exposed.sql.compoundOr
 import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.selectAll
 
@@ -56,5 +59,30 @@ class SelectDataAccessor {
         ).select(
             (Partner.lastName like "%${keyword}%")
         ).toList()
+    }
+
+    fun selectEmployeeNameOfGeneralOrAccounting(): List<ResultRow> {
+        return Employee.slice(
+            Employee.firstName,
+            Employee.lastName,
+        ).select(
+            Employee.departmentId inList listOf(1, 2)
+        ).toList()
+//        return Employee.slice(
+//            Employee.firstName,
+//            Employee.lastName,
+//        ).select(
+//            Employee.departmentId neq 3
+//        ).toList()
+//        val whereCondition = listOf(
+//            Employee.departmentId eq 1,
+//            Employee.departmentId eq 2
+//        ).compoundOr()
+//        return Employee.slice(
+//            Employee.firstName,
+//            Employee.lastName,
+//        ).select(
+//            whereCondition
+//        ).toList()
     }
 }

@@ -1,6 +1,7 @@
 package example.koin.accessor
 
 import example.koin.data.model.Employee
+import example.koin.data.model.Expense
 import example.koin.data.model.Partner
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
@@ -91,5 +92,22 @@ class SelectDataAccessor {
             Pair(Employee.departmentId, SortOrder.DESC),
             Pair(Employee.lastName, SortOrder.ASC),
         ).toList()
+    }
+
+    fun selectPartnerBySorted(): List<ResultRow> {
+        return Partner.slice(
+            Partner.firstName,
+            Partner.lastName,
+        ).selectAll().orderBy(
+            Pair(Partner.departmentId, SortOrder.DESC),
+            Pair(Partner.lastName, SortOrder.ASC),
+        ).toList()
+    }
+
+    fun selectHowManyApplyExpenseByEmployee(): List<ResultRow>{
+        return Expense.slice(
+            Expense.employeeId,
+            Expense.employeeId.count()
+        ).selectAll().toList()
     }
 }

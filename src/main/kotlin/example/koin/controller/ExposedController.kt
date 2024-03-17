@@ -53,4 +53,14 @@ class ExposedController(
         val message = selectService.getEmployeeBySorted()
         call.respondText(message)
     }
+
+    suspend fun getPartnerBySorted(call: ApplicationCall){
+        val message = selectService.getPartnerBySorted()
+        call.respondText(message)
+    }
+
+    suspend fun getHowManyApplyExpenseByEmployee(call: ApplicationCall){
+        val message = selectService.getHowManyApplyExpenseByEmployee()
+        call.respondText(message)
+    }
 }

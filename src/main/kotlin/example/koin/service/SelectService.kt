@@ -2,7 +2,9 @@ package example.koin.service
 
 import example.koin.accessor.SelectDataAccessor
 import example.koin.data.model.Employee
+import example.koin.data.model.Expense
 import example.koin.data.model.Partner
+import org.jetbrains.exposed.sql.count
 
 class SelectService(
     private val selectDataAccessor: SelectDataAccessor
@@ -78,19 +80,39 @@ class SelectService(
         val resultRows = executeQuery {
             selectDataAccessor.selectEmployeeNameOfGeneralOrAccounting()
         }
-        val partnerNames = resultRows.joinToString {
+        val employeeNames = resultRows.joinToString {
             "${it[Employee.lastName]} ${it[Employee.firstName]}"
         }
-        return partnerNames
+        return employeeNames
     }
 
     fun getEmployeeBySorted(): String {
         val resultRows = executeQuery {
             selectDataAccessor.selectEmployeeBySorted()
         }
-        val partnerNames = resultRows.joinToString {
+        val employeeNames = resultRows.joinToString {
             "${it[Employee.lastName]} ${it[Employee.firstName]}"
         }
+        return employeeNames
+    }
+
+    fun getPartnerBySorted(): String {
+        val resultRows = executeQuery {
+            selectDataAccessor.selectPartnerBySorted()
+        }
+        val partnerNames = resultRows.joinToString {
+            "${it[Partner.lastName]} ${it[Partner.firstName]}"
+        }
         return partnerNames
+    }
+
+    fun getHowManyApplyExpenseByEmployee(): String {
+        val resultRows = executeQuery {
+            selectDataAccessor.selectHowManyApplyExpenseByEmployee()
+        }
+        val howManyApply = resultRows.joinToString {
+            "${it[Expense.employeeId]}: ${it[Expense.employeeId.count()]}"
+        }
+        return howManyApply
     }
 }

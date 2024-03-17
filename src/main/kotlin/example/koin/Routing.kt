@@ -39,5 +39,11 @@ fun Application.configureRouting() {
         get("/employeeBySorted"){
             exposedController.getEmployeeBySorted(call)
         }
+        get("/partnerBySorted"){
+            exposedController.getPartnerBySorted(call)
+        }
+        get("/howManyApplyExpenseByEmployee"){
+            exposedController.getHowManyApplyExpenseByEmployee(call)
+        }
     }
 }

@@ -68,4 +68,9 @@ class ExposedController(
         val message = selectService.getHowMuchExpenseByEmployee()
         call.respondText(message)
     }
+
+    suspend fun getEmployeeLimitOffset(call: ApplicationCall){
+        val message = selectService.getEmployeeLimitOffset()
+        call.respondText(message)
+    }
 }

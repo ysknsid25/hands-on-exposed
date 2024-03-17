@@ -117,4 +117,11 @@ class SelectDataAccessor {
             Expense.expense.sum(),
         ).selectAll().groupBy(Expense.employeeId).toList()
     }
+
+    fun selectEmployeeLimitOffset(): List<ResultRow> {
+        return Employee.slice(
+            Employee.firstName,
+            Employee.lastName,
+        ).selectAll().limit(3, offset = 1).toList()
+    }
 }

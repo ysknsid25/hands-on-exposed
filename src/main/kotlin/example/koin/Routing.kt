@@ -48,5 +48,8 @@ fun Application.configureRouting() {
         get("/howMuchExpenseByEmployee"){
             exposedController.getHowMuchExpenseByEmployee(call)
         }
+        get("/employeeLimitOffset"){
+            exposedController.getEmployeeLimitOffset(call)
+        }
     }
 }

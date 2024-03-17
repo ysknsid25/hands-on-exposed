@@ -131,4 +131,14 @@ class SelectService(
         }
         return howMuchExpenseByEmployee
     }
+
+    fun getEmployeeLimitOffset():String{
+        val employeeNames = executeQuery {
+            val resultRows = selectDataAccessor.selectEmployeeLimitOffset()
+            resultRows.joinToString {
+                "${it[Employee.lastName]} ${it[Employee.firstName]}"
+            }
+        }
+        return employeeNames
+    }
 }

@@ -37,4 +37,10 @@ class ExposedController(
         val message = selectService.selectPartnerById(id)
         call.respondText(message)
     }
+
+    suspend fun getAllPartnersNamesByLikeKeyword(call: ApplicationCall){
+        val keyword = call.parameters["lastName"] ?: ""
+        val message = selectService.getAllPartnersNamesByLikeKeyword(keyword)
+        call.respondText(message)
+    }
 }

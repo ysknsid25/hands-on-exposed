@@ -30,5 +30,8 @@ fun Application.configureRouting() {
         get("/partnerNameById"){
             exposedController.getPartnerNameById(call)
         }
+        get("/partnerNameByLikeKeyword"){
+            exposedController.getAllPartnersNamesByLikeKeyword(call)
+        }
     }
 }

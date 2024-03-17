@@ -60,4 +60,17 @@ class SelectService(
         } ?: return "該当するパートナーが見つかりません。"
         return "パートナーの名前は「${resultRow[Partner.lastName]} ${resultRow[Partner.firstName]}」です！"
     }
+
+    fun getAllPartnersNamesByLikeKeyword(keyword: String): String {
+        val resultRows = executeQuery {
+            selectDataAccessor.selectPartnerByLikeKeyword(keyword)
+        }
+        if(resultRows.isEmpty()){
+            return "該当するパートナーが見つかりません。"
+        }
+        val partnerNames = resultRows.joinToString {
+            "${it[Partner.lastName]} ${it[Partner.firstName]}"
+        }
+        return partnerNames
+    }
 }

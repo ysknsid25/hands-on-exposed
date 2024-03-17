@@ -4,6 +4,7 @@ import example.koin.data.model.Employee
 import example.koin.data.model.Partner
 import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
+import org.jetbrains.exposed.sql.SqlExpressionBuilder.like
 import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.selectAll
 
@@ -46,5 +47,14 @@ class SelectDataAccessor {
         ).select(
             (Partner.partnerId eq id)
         ).firstOrNull()
+    }
+
+    fun selectPartnerByLikeKeyword(keyword: String): List<ResultRow> {
+        return Partner.slice(
+            Partner.firstName,
+            Partner.lastName,
+        ).select(
+            (Partner.lastName like "%${keyword}%")
+        ).toList()
     }
 }

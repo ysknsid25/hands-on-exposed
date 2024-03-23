@@ -162,4 +162,14 @@ class SelectService(
         }
         return employeeNamesAndDepartment
     }
+
+    fun getPartnerNameAndDepartment(): String {
+        val employeeNamesAndDepartment = executeQuery {
+            val resultRows = selectDataAccessor.joinPartnerDepartmentAll()
+            resultRows.joinToString {
+                "${it[Partner.lastName]} ${it[Partner.firstName]}: ${it[Department.departmentName]}"
+            }
+        }
+        return employeeNamesAndDepartment
+    }
 }

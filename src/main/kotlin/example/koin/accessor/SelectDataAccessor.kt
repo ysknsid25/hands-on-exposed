@@ -143,4 +143,15 @@ class SelectDataAccessor {
             .selectAll()
             .toList()
     }
+
+    fun joinPartnerDepartmentAll(): List<ResultRow> {
+        return Partner.join(Department, JoinType.INNER, Partner.departmentId, Department.departmentId)
+            .slice(
+                Department.departmentName,
+                Partner.firstName,
+                Partner.lastName,
+            )
+            .selectAll()
+            .toList()
+    }
 }

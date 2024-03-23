@@ -60,5 +60,8 @@ fun Application.configureRouting() {
         get("/partnerNameAndDepartment"){
             exposedController.getPartnerNameAndDepartment(call)
         }
+        get("/hasExpenseEmployeeNames"){
+            exposedController.hasExpenseEmployeeNames(call)
+        }
     }
 }

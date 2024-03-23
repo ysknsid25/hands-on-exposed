@@ -11,6 +11,9 @@ import org.jetbrains.exposed.sql.SqlExpressionBuilder.like
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.neq
 
 class SelectDataAccessor {
+
+    private val innerJoinExpenseEmployee = Employee.join(Expense, JoinType.INNER, Employee.employeeId, Expense.employeeId)
+
     fun selectEmployeeById(id: Int): ResultRow {
         return Employee.slice(
             Employee.firstName,
@@ -153,5 +156,12 @@ class SelectDataAccessor {
             )
             .selectAll()
             .toList()
+    }
+
+    fun selectHasExpenseEmployeeNames(): List<ResultRow>{
+        return innerJoinExpenseEmployee.slice(
+            Employee.firstName,
+            Employee.lastName
+        ).selectAll().withDistinct().toList()
     }
 }

@@ -88,4 +88,9 @@ class ExposedController(
         val message = selectService.getPartnerNameAndDepartment()
         call.respondText(message)
     }
+
+    suspend fun hasExpenseEmployeeNames(call: ApplicationCall){
+        val message = selectService.hasExpenseEmployeeNames()
+        call.respondText(message)
+    }
 }

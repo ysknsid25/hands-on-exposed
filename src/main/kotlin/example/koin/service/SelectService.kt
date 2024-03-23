@@ -113,7 +113,7 @@ class SelectService(
         return partnerNames
     }
 
-    fun getHowManyApplyExpenseByEmployee():String{
+    fun getHowManyApplyExpenseByEmployee(): String{
         val howManyApplyExpenseByEmployee = executeQuery {
             val resultRows = selectDataAccessor.selectHowManyApplyExpenseByEmployee()
             resultRows.joinToString {
@@ -123,7 +123,7 @@ class SelectService(
         return howManyApplyExpenseByEmployee
     }
 
-    fun getHowMuchExpenseByEmployee():String{
+    fun getHowMuchExpenseByEmployee(): String{
         val howMuchExpenseByEmployee = executeQuery {
             val resultRows = selectDataAccessor.selectHowMuchExpenseByEmployee()
             resultRows.joinToString {
@@ -133,7 +133,7 @@ class SelectService(
         return howMuchExpenseByEmployee
     }
 
-    fun getEmployeeLimitOffset():String{
+    fun getEmployeeLimitOffset(): String{
         val employeeNames = executeQuery {
             val resultRows = selectDataAccessor.selectEmployeeLimitOffset()
             resultRows.joinToString {
@@ -143,7 +143,7 @@ class SelectService(
         return employeeNames
     }
 
-    fun getPartnerLimitOffset():String{
+    fun getPartnerLimitOffset(): String{
         val partnerNames = executeQuery {
             val resultRows = selectDataAccessor.selectPartnerLimitOffset()
             resultRows.joinToString {
@@ -171,5 +171,15 @@ class SelectService(
             }
         }
         return employeeNamesAndDepartment
+    }
+
+    fun hasExpenseEmployeeNames(): String{
+        val employeeNames = executeQuery {
+            val resultRows = selectDataAccessor.selectHasExpenseEmployeeNames()
+            resultRows.joinToString {
+                "${it[Employee.lastName]} ${it[Employee.firstName]}"
+            }
+        }
+        return employeeNames
     }
 }

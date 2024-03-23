@@ -1,5 +1,6 @@
 package example.koin.accessor
 
+import example.koin.data.model.Department
 import example.koin.data.model.Employee
 import example.koin.data.model.Expense
 import example.koin.data.model.Partner
@@ -130,5 +131,16 @@ class SelectDataAccessor {
             Partner.firstName,
             Partner.lastName,
         ).selectAll().limit(3, offset = 1).toList()
+    }
+
+    fun joinEmployeeDepartmentAll(): List<ResultRow> {
+        return Employee.join(Department, JoinType.INNER, Employee.departmentId, Department.departmentId)
+            .slice(
+                Department.departmentName,
+                Employee.firstName,
+                Employee.lastName,
+            )
+            .selectAll()
+            .toList()
     }
 }

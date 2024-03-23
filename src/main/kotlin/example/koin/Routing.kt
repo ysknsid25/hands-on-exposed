@@ -54,5 +54,8 @@ fun Application.configureRouting() {
         get("/partnerLimitOffset"){
             exposedController.getPartnerLimitOffset(call)
         }
+        get("/employeeNameAndDepartment"){
+            exposedController.getEmployeeNameAndDepartment(call)
+        }
     }
 }

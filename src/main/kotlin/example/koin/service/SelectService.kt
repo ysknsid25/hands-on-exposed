@@ -1,6 +1,7 @@
 package example.koin.service
 
 import example.koin.accessor.SelectDataAccessor
+import example.koin.data.model.Department
 import example.koin.data.model.Employee
 import example.koin.data.model.Expense
 import example.koin.data.model.Partner
@@ -150,5 +151,15 @@ class SelectService(
             }
         }
         return partnerNames
+    }
+
+    fun getEmployeeNameAndDepartment(): String {
+        val employeeNamesAndDepartment = executeQuery {
+            val resultRows = selectDataAccessor.joinEmployeeDepartmentAll()
+            resultRows.joinToString {
+                "${it[Employee.lastName]} ${it[Employee.firstName]}: ${it[Department.departmentName]}"
+            }
+        }
+        return employeeNamesAndDepartment
     }
 }

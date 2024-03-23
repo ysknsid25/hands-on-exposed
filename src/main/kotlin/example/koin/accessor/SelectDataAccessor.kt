@@ -5,8 +5,11 @@ import example.koin.data.model.Employee
 import example.koin.data.model.Expense
 import example.koin.data.model.Partner
 import org.jetbrains.exposed.sql.*
+import org.jetbrains.exposed.sql.SqlExpressionBuilder.between
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
+import org.jetbrains.exposed.sql.SqlExpressionBuilder.greaterEq
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.inList
+import org.jetbrains.exposed.sql.SqlExpressionBuilder.lessEq
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.like
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.neq
 
@@ -163,5 +166,24 @@ class SelectDataAccessor {
             Employee.firstName,
             Employee.lastName
         ).selectAll().withDistinct().toList()
+    }
+
+    fun selectHasExpenseEmployeeNamesWithBetween(): List<ResultRow>{
+        //別解
+//        return innerJoinExpenseEmployee.slice(
+//            Employee.firstName,
+//            Employee.lastName
+//        ).select(
+//            listOf(
+//                Expense.expense greaterEq 1000,
+//                Expense.expense lessEq 2000,
+//            ).compoundAnd()
+//        ).withDistinct().toList()
+        return innerJoinExpenseEmployee.slice(
+            Employee.firstName,
+            Employee.lastName
+        ).select(
+            Expense.expense.between(1000, 2000)
+        ).withDistinct().toList()
     }
 }

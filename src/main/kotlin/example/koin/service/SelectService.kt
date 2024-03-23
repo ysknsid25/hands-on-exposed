@@ -182,4 +182,14 @@ class SelectService(
         }
         return employeeNames
     }
+
+    fun hasExpenseEmployeeNamesWithBetween(): String{
+        val employeeNames = executeQuery {
+            val resultRows = selectDataAccessor.selectHasExpenseEmployeeNamesWithBetween()
+            resultRows.joinToString {
+                "${it[Employee.lastName]} ${it[Employee.firstName]}"
+            }
+        }
+        return employeeNames
+    }
 }

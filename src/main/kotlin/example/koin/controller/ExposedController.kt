@@ -93,4 +93,9 @@ class ExposedController(
         val message = selectService.hasExpenseEmployeeNames()
         call.respondText(message)
     }
+
+    suspend fun hasExpenseEmployeeNamesWithBetween(call: ApplicationCall){
+        val message = selectService.hasExpenseEmployeeNamesWithBetween()
+        call.respondText(message)
+    }
 }

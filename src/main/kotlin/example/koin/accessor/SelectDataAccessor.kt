@@ -268,8 +268,25 @@ class SelectDataAccessor {
         }.toList()
     }
 
+    fun latestEmployeeIdByDepartmentId(): List<ResultRow> {
+        return Department.join(
+            latestEmployeeIdByDepartmentId,
+            JoinType.INNER,
+            latestEmployeeIdByDepartmentId[Employee.departmentId],
+            Department.departmentId
+        ).slice(
+            Department.departmentName,
+            latestEmployeeIdByDepartmentId[EMPLOYTT_ID_MAX]
+        ).selectAll().toList()
+    }
+
     companion object {
         val EMPLOYEE_TYPE = LiteralOp(ShortColumnType(), 1.toShort())
         val PARTNER_TYPE = LiteralOp(ShortColumnType(), 2.toShort())
+        val EMPLOYTT_ID_MAX = Employee.employeeId.max().alias("maxEmployeeId")
+        val latestEmployeeIdByDepartmentId = Employee.slice(
+            Employee.departmentId,
+            EMPLOYTT_ID_MAX,
+        ).selectAll().groupBy(Employee.departmentId).alias("latestEmployeeIdByDepartmentId")
     }
 }

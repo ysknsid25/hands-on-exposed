@@ -123,4 +123,9 @@ class ExposedController(
         val message = selectService.getExistsOverExpenseEmployeeIdAndNames()
         call.respondText(message)
     }
+
+    suspend fun getLatestEmployeeIdByDepartmentId(call: ApplicationCall){
+        val message = selectService.getLatestEmployeeIdByDepartmentId()
+        call.respondText(message)
+    }
 }

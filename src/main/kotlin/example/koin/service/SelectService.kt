@@ -245,6 +245,16 @@ class SelectService(
         return employeeIdAndNames
     }
 
+    fun getLatestEmployeeIdByDepartmentId(): String{
+        val employeeIdAndNames = executeQuery {
+            val resultRows = selectDataAccessor.latestEmployeeIdByDepartmentId()
+            resultRows.joinToString {
+                "${it[Department.departmentName]}: ${it[SelectDataAccessor.latestEmployeeIdByDepartmentId[SelectDataAccessor.EMPLOYTT_ID_MAX]]}"
+            }
+        }
+        return employeeIdAndNames
+    }
+
     enum class EmployeeType(private val value: Short, val typeName: String) {
         EMPLOYEE(1, "社員"),
         PARTNER(2, "パートナー");

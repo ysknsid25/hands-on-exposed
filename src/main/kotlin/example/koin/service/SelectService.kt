@@ -235,6 +235,16 @@ class SelectService(
         return employeeIdAndNames
     }
 
+    fun getExistsOverExpenseEmployeeIdAndNames(): String{
+        val employeeIdAndNames = executeQuery {
+            val resultRows = selectDataAccessor.existsOverExpenseEmployeeIdAndNames()
+            resultRows.joinToString {
+                "${it[Employee.employeeId]}: ${it[Employee.lastName]} ${it[Employee.firstName]}"
+            }
+        }
+        return employeeIdAndNames
+    }
+
     enum class EmployeeType(private val value: Short, val typeName: String) {
         EMPLOYEE(1, "社員"),
         PARTNER(2, "パートナー");

@@ -250,6 +250,24 @@ class SelectDataAccessor {
         ).selectAll().toList()
     }
 
+    fun existsOverExpenseEmployeeIdAndNames(): List<ResultRow> {
+        val hasExpenseEmployeeId = Expense.slice(
+            Expense.employeeId
+        ).selectAll().groupBy(Expense.employeeId).having { Expense.expense.sum() greaterEq 2500 }.alias("overExpenseEmployeeId")
+
+        return Employee.slice(
+            Employee.employeeId,
+            Employee.firstName,
+            Employee.lastName,
+        ).select{
+            exists(
+                hasExpenseEmployeeId.select {
+                    hasExpenseEmployeeId[Expense.employeeId] eq Employee.employeeId
+                }
+            )
+        }.toList()
+    }
+
     companion object {
         val EMPLOYEE_TYPE = LiteralOp(ShortColumnType(), 1.toShort())
         val PARTNER_TYPE = LiteralOp(ShortColumnType(), 2.toShort())

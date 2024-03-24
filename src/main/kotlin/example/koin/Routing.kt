@@ -78,5 +78,8 @@ fun Application.configureRouting() {
         get("/overExpenseEmployeeIdAndNames"){
             exposedController.getOverExpenseEmployeeIdAndNames(call)
         }
+        get("/existsOverExpenseEmployeeIdAndNames"){
+            exposedController.getExistsOverExpenseEmployeeIdAndNames(call)
+        }
     }
 }

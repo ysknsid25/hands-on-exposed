@@ -233,6 +233,23 @@ class SelectDataAccessor {
         ).selectAll().toList()
     }
 
+    fun overExpenseEmployeeIdAndNames(): List<ResultRow> {
+        val hasExpenseEmployeeId = Expense.slice(
+            Expense.employeeId
+        ).selectAll().groupBy(Expense.employeeId).having { Expense.expense.sum() greaterEq 2500 }.alias("overExpenseEmployeeId")
+
+        return Employee.join(
+            hasExpenseEmployeeId,
+            JoinType.INNER,
+            Employee.employeeId,
+            hasExpenseEmployeeId[Expense.employeeId]
+        ).slice(
+            Employee.employeeId,
+            Employee.firstName,
+            Employee.lastName,
+        ).selectAll().toList()
+    }
+
     companion object {
         val EMPLOYEE_TYPE = LiteralOp(ShortColumnType(), 1.toShort())
         val PARTNER_TYPE = LiteralOp(ShortColumnType(), 2.toShort())

@@ -113,4 +113,9 @@ class ExposedController(
         val message = selectService.getHasExpenseEmployeeIdAndNames()
         call.respondText(message)
     }
+
+    suspend fun getOverExpenseEmployeeIdAndNames(call: ApplicationCall){
+        val message = selectService.getOverExpenseEmployeeIdAndNames()
+        call.respondText(message)
+    }
 }

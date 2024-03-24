@@ -192,4 +192,50 @@ class SelectService(
         }
         return employeeNames
     }
+
+    fun getAllEmployeeTypeAndNames(): String{
+        val employeeTypeAndNames = executeQuery {
+            val resultRows = selectDataAccessor.unionAllEmployeeAndPartner()
+            resultRows.joinToString {
+                val employeeTypeName = EmployeeType.of(it[SelectDataAccessor.EMPLOYEE_TYPE])?.typeName ?: "不明"
+                "${employeeTypeName}: ${it[Employee.lastName]} ${it[Employee.firstName]}"
+            }
+        }
+        return employeeTypeAndNames
+    }
+
+    fun getAllEmployeeTypeAndNamesDistinct(): String{
+        val employeeTypeAndNames = executeQuery {
+            val resultRows = selectDataAccessor.unionEmployeeAndPartner()
+            resultRows.joinToString {
+                val employeeTypeName = EmployeeType.of(it[SelectDataAccessor.EMPLOYEE_TYPE])?.typeName ?: "不明"
+                "${employeeTypeName}: ${it[Employee.lastName]} ${it[Employee.firstName]}"
+            }
+        }
+        return employeeTypeAndNames
+    }
+
+    fun getHasExpenseEmployeeIdAndNames(): String{
+        val employeeIdAndNames = executeQuery {
+            val resultRows = selectDataAccessor.hasExpenseEmployeeIdAndNames()
+            resultRows.joinToString {
+                "${it[Employee.employeeId]}: ${it[Employee.lastName]} ${it[Employee.firstName]}"
+            }
+        }
+        return employeeIdAndNames
+    }
+
+    enum class EmployeeType(private val value: Short, val typeName: String) {
+        EMPLOYEE(1, "社員"),
+        PARTNER(2, "パートナー");
+
+        companion object {
+            fun of(value: Short): EmployeeType? {
+                return EmployeeType.values().firstOrNull{
+                    value == it.value
+                }
+            }
+        }
+    }
+
 }

@@ -98,4 +98,19 @@ class ExposedController(
         val message = selectService.hasExpenseEmployeeNamesWithBetween()
         call.respondText(message)
     }
+
+    suspend fun getAllEmployeeTypeAndNames(call: ApplicationCall){
+        val message = selectService.getAllEmployeeTypeAndNames()
+        call.respondText(message)
+    }
+
+    suspend fun getAllEmployeeTypeAndNamesDistinct(call: ApplicationCall){
+        val message = selectService.getAllEmployeeTypeAndNamesDistinct()
+        call.respondText(message)
+    }
+
+    suspend fun getHasExpenseEmployeeIdAndNames(call: ApplicationCall){
+        val message = selectService.getHasExpenseEmployeeIdAndNames()
+        call.respondText(message)
+    }
 }

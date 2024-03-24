@@ -66,5 +66,14 @@ fun Application.configureRouting() {
         get("/hasExpenseEmployeeNamesWithBetween"){
             exposedController.hasExpenseEmployeeNamesWithBetween(call)
         }
+        get("/allEmployeeTypeAndNames"){
+            exposedController.getAllEmployeeTypeAndNames(call)
+        }
+        get("/allEmployeeTypeAndNamesDistinct"){
+            exposedController.getAllEmployeeTypeAndNamesDistinct(call)
+        }
+        get("/hasExpenseEmployeeIdAndNames"){
+            exposedController.getHasExpenseEmployeeIdAndNames(call)
+        }
     }
 }

@@ -186,4 +186,55 @@ class SelectDataAccessor {
             Expense.expense.between(1000, 2000)
         ).withDistinct().toList()
     }
+
+    fun unionAllEmployeeAndPartner(): List<ResultRow> {
+        val employeeDirectedQuery = Employee.slice(
+            EMPLOYEE_TYPE,
+            Employee.firstName,
+            Employee.lastName
+        ).selectAll()
+        val partnerDirectedQuery = Partner.slice(
+            PARTNER_TYPE,
+            Partner.firstName,
+            Partner.lastName
+        ).selectAll()
+        return employeeDirectedQuery.unionAll(partnerDirectedQuery).toList()
+    }
+
+    fun unionEmployeeAndPartner(): List<ResultRow> {
+        val employeeDirectedQuery = Employee.slice(
+            EMPLOYEE_TYPE,
+            Employee.firstName,
+            Employee.lastName
+        ).selectAll()
+        val partnerDirectedQuery = Partner.slice(
+            PARTNER_TYPE,
+            Partner.firstName,
+            Partner.lastName
+        ).selectAll()
+        return employeeDirectedQuery.union(partnerDirectedQuery).toList()
+    }
+
+    fun hasExpenseEmployeeIdAndNames(): List<ResultRow> {
+        val hasExpenseEmployeeId = Expense.slice(
+            Expense.employeeId,
+            Expense.employeeId.count()
+        ).selectAll().groupBy(Expense.employeeId).having { Expense.employeeId.count() greater 0 }.alias("hasExpenseEmployeeId")
+
+        return Employee.join(
+            hasExpenseEmployeeId,
+            JoinType.INNER,
+            Employee.employeeId,
+            hasExpenseEmployeeId[Expense.employeeId]
+        ).slice(
+            Employee.employeeId,
+            Employee.firstName,
+            Employee.lastName,
+        ).selectAll().toList()
+    }
+
+    companion object {
+        val EMPLOYEE_TYPE = LiteralOp(ShortColumnType(), 1.toShort())
+        val PARTNER_TYPE = LiteralOp(ShortColumnType(), 2.toShort())
+    }
 }

@@ -265,6 +265,26 @@ class SelectService(
         return employeeNamesAndEnrollmentStatus
     }
 
+    fun getPartnerNamesAndEnrollmentStatus(): String{
+        val partnerNamesAndEnrollmentStatus = executeQuery {
+            val resultRows = selectDataAccessor.selectPartnerNamesAndEnrollmentStatus()
+            resultRows.joinToString {
+                "${it[Partner.lastName]} ${it[Partner.firstName]}: ${it[SelectDataAccessor.casePartnerEnrollmentStatus]}"
+            }
+        }
+        return partnerNamesAndEnrollmentStatus
+    }
+
+    fun getConcatEmployeeNames(): String{
+        val concatEmployeeNames = executeQuery {
+            val resultRows = selectDataAccessor.selectConcatEmployeeNames()
+            resultRows.joinToString {
+                it[SelectDataAccessor.employeeNameConcat]
+            }
+        }
+        return concatEmployeeNames
+    }
+
     enum class EmployeeType(private val value: Short, val typeName: String) {
         EMPLOYEE(1, "社員"),
         PARTNER(2, "パートナー");

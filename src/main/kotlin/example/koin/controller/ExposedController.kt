@@ -133,4 +133,14 @@ class ExposedController(
         val message = selectService.getEmployeeNamesAndEnrollmentStatus()
         call.respondText(message)
     }
+
+    suspend fun getPartnerNamesAndEnrollmentStatus(call: ApplicationCall){
+        val message = selectService.getPartnerNamesAndEnrollmentStatus()
+        call.respondText(message)
+    }
+
+    suspend fun getConcatEmployeeNames(call: ApplicationCall){
+        val message = selectService.getConcatEmployeeNames()
+        call.respondText(message)
+    }
 }

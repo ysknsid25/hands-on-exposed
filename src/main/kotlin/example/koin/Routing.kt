@@ -87,5 +87,11 @@ fun Application.configureRouting() {
         get("/employeeNamesAndEnrollmentStatus"){
             exposedController.getEmployeeNamesAndEnrollmentStatus(call)
         }
+        get("/partnerNamesAndEnrollmentStatus"){
+            exposedController.getPartnerNamesAndEnrollmentStatus(call)
+        }
+        get("/concatEmployeeNames"){
+            exposedController.getConcatEmployeeNames(call)
+        }
     }
 }

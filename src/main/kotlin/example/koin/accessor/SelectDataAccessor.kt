@@ -15,7 +15,8 @@ import org.jetbrains.exposed.sql.SqlExpressionBuilder.neq
 
 class SelectDataAccessor {
 
-    private val innerJoinExpenseEmployee = Employee.join(Expense, JoinType.INNER, Employee.employeeId, Expense.employeeId)
+    private val innerJoinExpenseEmployee =
+        Employee.join(Expense, JoinType.INNER, Employee.employeeId, Expense.employeeId)
 
     fun selectEmployeeById(id: Int): ResultRow {
         return Employee.slice(
@@ -111,14 +112,14 @@ class SelectDataAccessor {
         ).toList()
     }
 
-    fun selectHowManyApplyExpenseByEmployee(): List<ResultRow>{
+    fun selectHowManyApplyExpenseByEmployee(): List<ResultRow> {
         return Expense.slice(
             Expense.employeeId,
             Expense.employeeId.count(),
         ).selectAll().groupBy(Expense.employeeId).toList()
     }
 
-    fun selectHowMuchExpenseByEmployee(): List<ResultRow>{
+    fun selectHowMuchExpenseByEmployee(): List<ResultRow> {
         return Expense.slice(
             Expense.employeeId,
             Expense.expense.sum(),
@@ -161,14 +162,14 @@ class SelectDataAccessor {
             .toList()
     }
 
-    fun selectHasExpenseEmployeeNames(): List<ResultRow>{
+    fun selectHasExpenseEmployeeNames(): List<ResultRow> {
         return innerJoinExpenseEmployee.slice(
             Employee.firstName,
             Employee.lastName
         ).selectAll().withDistinct().toList()
     }
 
-    fun selectHasExpenseEmployeeNamesWithBetween(): List<ResultRow>{
+    fun selectHasExpenseEmployeeNamesWithBetween(): List<ResultRow> {
         //別解
 //        return innerJoinExpenseEmployee.slice(
 //            Employee.firstName,
@@ -219,7 +220,8 @@ class SelectDataAccessor {
         val hasExpenseEmployeeId = Expense.slice(
             Expense.employeeId,
             Expense.employeeId.count()
-        ).selectAll().groupBy(Expense.employeeId).having { Expense.employeeId.count() greater 0 }.alias("hasExpenseEmployeeId")
+        ).selectAll().groupBy(Expense.employeeId).having { Expense.employeeId.count() greater 0 }
+            .alias("hasExpenseEmployeeId")
 
         return Employee.join(
             hasExpenseEmployeeId,
@@ -236,7 +238,8 @@ class SelectDataAccessor {
     fun overExpenseEmployeeIdAndNames(): List<ResultRow> {
         val hasExpenseEmployeeId = Expense.slice(
             Expense.employeeId
-        ).selectAll().groupBy(Expense.employeeId).having { Expense.expense.sum() greaterEq 2500 }.alias("overExpenseEmployeeId")
+        ).selectAll().groupBy(Expense.employeeId).having { Expense.expense.sum() greaterEq 2500 }
+            .alias("overExpenseEmployeeId")
 
         return Employee.join(
             hasExpenseEmployeeId,
@@ -253,13 +256,14 @@ class SelectDataAccessor {
     fun existsOverExpenseEmployeeIdAndNames(): List<ResultRow> {
         val hasExpenseEmployeeId = Expense.slice(
             Expense.employeeId
-        ).selectAll().groupBy(Expense.employeeId).having { Expense.expense.sum() greaterEq 2500 }.alias("overExpenseEmployeeId")
+        ).selectAll().groupBy(Expense.employeeId).having { Expense.expense.sum() greaterEq 2500 }
+            .alias("overExpenseEmployeeId")
 
         return Employee.slice(
             Employee.employeeId,
             Employee.firstName,
             Employee.lastName,
-        ).select{
+        ).select {
             exists(
                 hasExpenseEmployeeId.select {
                     hasExpenseEmployeeId[Expense.employeeId] eq Employee.employeeId
@@ -288,6 +292,18 @@ class SelectDataAccessor {
         ).selectAll().toList()
     }
 
+    fun selectPartnerNamesAndEnrollmentStatus(): List<ResultRow> {
+        return Partner.slice(
+            Partner.firstName,
+            Partner.lastName,
+            casePartnerEnrollmentStatus,
+        ).selectAll().toList()
+    }
+
+    fun selectConcatEmployeeNames(): List<ResultRow> {
+        return Employee.slice(employeeNameConcat).selectAll().toList()
+    }
+
     companion object {
         val EMPLOYEE_TYPE = LiteralOp(ShortColumnType(), 1.toShort())
         val PARTNER_TYPE = LiteralOp(ShortColumnType(), 2.toShort())
@@ -298,10 +314,20 @@ class SelectDataAccessor {
         ).selectAll().groupBy(Employee.departmentId).alias("latestEmployeeIdByDepartmentId")
 
         val caseEnrollmentStatus = Expression.build {
-            Case().When(Employee.enrollmentStatus eq  0, stringLiteral("在籍中"))
+            Case().When(Employee.enrollmentStatus eq 0, stringLiteral("在籍中"))
                 .When(Employee.enrollmentStatus eq 1, stringLiteral("休職中"))
                 .When(Employee.enrollmentStatus eq 2, stringLiteral("退職済"))
                 .Else(stringLiteral("その他"))
         }
+
+        val casePartnerEnrollmentStatus = Expression.build {
+            Case().When(Partner.enrollmentStatus eq 0, stringLiteral("在籍中"))
+                .When(Partner.enrollmentStatus eq 1, stringLiteral("休職中"))
+                .When(Partner.enrollmentStatus eq 2, stringLiteral("退職済"))
+                .Else(stringLiteral("その他"))
+        }
+
+        val employeeNameConcat = Concat(" ", Employee.lastName, Employee.firstName)
+
     }
 }

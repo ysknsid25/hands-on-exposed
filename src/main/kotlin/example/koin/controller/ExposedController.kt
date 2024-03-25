@@ -143,4 +143,9 @@ class ExposedController(
         val message = selectService.getConcatEmployeeNames()
         call.respondText(message)
     }
+
+    suspend fun getConcatPartnerNames(call: ApplicationCall){
+        val message = selectService.getConcatPartnerNames()
+        call.respondText(message)
+    }
 }

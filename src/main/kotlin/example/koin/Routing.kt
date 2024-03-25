@@ -93,5 +93,8 @@ fun Application.configureRouting() {
         get("/concatEmployeeNames"){
             exposedController.getConcatEmployeeNames(call)
         }
+        get("/concatPartnerNames"){
+            exposedController.getConcatPartnerNames(call)
+        }
     }
 }

@@ -304,9 +304,14 @@ class SelectDataAccessor {
         return Employee.slice(employeeNameConcat).selectAll().toList()
     }
 
+    fun selectConcatPartnerNames(): List<ResultRow> {
+        return Partner.slice(partnerNameConcat).selectAll().toList()
+    }
+
     companion object {
         val EMPLOYEE_TYPE = LiteralOp(ShortColumnType(), 1.toShort())
         val PARTNER_TYPE = LiteralOp(ShortColumnType(), 2.toShort())
+
         val EMPLOYTT_ID_MAX = Employee.employeeId.max().alias("maxEmployeeId")
         val latestEmployeeIdByDepartmentId = Employee.slice(
             Employee.departmentId,
@@ -319,7 +324,6 @@ class SelectDataAccessor {
                 .When(Employee.enrollmentStatus eq 2, stringLiteral("退職済"))
                 .Else(stringLiteral("その他"))
         }
-
         val casePartnerEnrollmentStatus = Expression.build {
             Case().When(Partner.enrollmentStatus eq 0, stringLiteral("在籍中"))
                 .When(Partner.enrollmentStatus eq 1, stringLiteral("休職中"))
@@ -328,6 +332,7 @@ class SelectDataAccessor {
         }
 
         val employeeNameConcat = Concat(" ", Employee.lastName, Employee.firstName)
+        val partnerNameConcat = Concat(" ", Partner.lastName, Partner.firstName)
 
     }
 }

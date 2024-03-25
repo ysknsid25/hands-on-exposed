@@ -305,6 +305,16 @@ class SelectService(
         return concatPartnerNames
     }
 
+    fun getEmployeeFirstNameCharLength(): String{
+        val concatPartnerNames = executeQuery {
+            val resultRows = selectDataAccessor.selectEmployeeFirstNameCharLength()
+            resultRows.joinToString {
+                "${it[Employee.firstName]}:${it[SelectDataAccessor.employeeFIrstNameCharLength]}"
+            }
+        }
+        return concatPartnerNames
+    }
+
     enum class EmployeeType(private val value: Short, val typeName: String) {
         EMPLOYEE(1, "社員"),
         PARTNER(2, "パートナー");

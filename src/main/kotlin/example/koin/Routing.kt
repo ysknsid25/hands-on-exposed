@@ -99,5 +99,8 @@ fun Application.configureRouting() {
         get("/employeeFirstNameStrByte"){
             exposedController.getEmployeeFirstNameStrByte(call)
         }
+        get("/employeeFirstNameCharLength"){
+            exposedController.getEmployeeFirstNameCharLength(call)
+        }
     }
 }

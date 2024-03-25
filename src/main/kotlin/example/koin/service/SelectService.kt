@@ -295,6 +295,16 @@ class SelectService(
         return concatPartnerNames
     }
 
+    fun getEmployeeFirstNameStrByte(): String{
+        val concatPartnerNames = executeQuery {
+            val resultRows = selectDataAccessor.selectEmployeeFirstNameStrByte()
+            resultRows.joinToString {
+                "${it[Employee.firstName]}:${it[SelectDataAccessor.employeeFirstNameStrByte]}"
+            }
+        }
+        return concatPartnerNames
+    }
+
     enum class EmployeeType(private val value: Short, val typeName: String) {
         EMPLOYEE(1, "社員"),
         PARTNER(2, "パートナー");

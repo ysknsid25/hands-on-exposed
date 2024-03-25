@@ -1,5 +1,6 @@
 package example.koin.accessor
 
+import example.koin.accessor.function.Length
 import example.koin.data.model.Department
 import example.koin.data.model.Employee
 import example.koin.data.model.Expense
@@ -308,6 +309,13 @@ class SelectDataAccessor {
         return Partner.slice(partnerNameConcat).selectAll().toList()
     }
 
+    fun selectEmployeeFirstNameStrByte(): List<ResultRow>{
+        return Employee.slice(
+            Employee.firstName,
+            employeeFirstNameStrByte,
+        ).selectAll().toList()
+    }
+
     companion object {
         val EMPLOYEE_TYPE = LiteralOp(ShortColumnType(), 1.toShort())
         val PARTNER_TYPE = LiteralOp(ShortColumnType(), 2.toShort())
@@ -333,6 +341,8 @@ class SelectDataAccessor {
 
         val employeeNameConcat = Concat(" ", Employee.lastName, Employee.firstName)
         val partnerNameConcat = Concat(" ", Partner.lastName, Partner.firstName)
+
+        val employeeFirstNameStrByte = Length(Employee.firstName)
 
     }
 }

@@ -148,4 +148,9 @@ class ExposedController(
         val message = selectService.getConcatPartnerNames()
         call.respondText(message)
     }
+
+    suspend fun getEmployeeFirstNameStrByte(call: ApplicationCall){
+        val message = selectService.getEmployeeFirstNameStrByte()
+        call.respondText(message)
+    }
 }

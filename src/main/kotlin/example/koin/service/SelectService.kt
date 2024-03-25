@@ -255,6 +255,16 @@ class SelectService(
         return employeeIdAndNames
     }
 
+    fun getEmployeeNamesAndEnrollmentStatus(): String{
+        val employeeNamesAndEnrollmentStatus = executeQuery {
+            val resultRows = selectDataAccessor.selectEmployeeNamesAndEnrollmentStatus()
+            resultRows.joinToString {
+                "${it[Employee.lastName]} ${it[Employee.firstName]}: ${it[SelectDataAccessor.caseEnrollmentStatus]}"
+            }
+        }
+        return employeeNamesAndEnrollmentStatus
+    }
+
     enum class EmployeeType(private val value: Short, val typeName: String) {
         EMPLOYEE(1, "社員"),
         PARTNER(2, "パートナー");

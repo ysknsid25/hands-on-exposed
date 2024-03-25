@@ -128,4 +128,9 @@ class ExposedController(
         val message = selectService.getLatestEmployeeIdByDepartmentId()
         call.respondText(message)
     }
+
+    suspend fun getEmployeeNamesAndEnrollmentStatus(call: ApplicationCall){
+        val message = selectService.getEmployeeNamesAndEnrollmentStatus()
+        call.respondText(message)
+    }
 }

@@ -84,5 +84,8 @@ fun Application.configureRouting() {
         get("/latestEmployeeIdByDepartmentId"){
             exposedController.getLatestEmployeeIdByDepartmentId(call)
         }
+        get("/employeeNamesAndEnrollmentStatus"){
+            exposedController.getEmployeeNamesAndEnrollmentStatus(call)
+        }
     }
 }

@@ -280,6 +280,14 @@ class SelectDataAccessor {
         ).selectAll().toList()
     }
 
+    fun selectEmployeeNamesAndEnrollmentStatus(): List<ResultRow> {
+        return Employee.slice(
+            Employee.firstName,
+            Employee.lastName,
+            caseEnrollmentStatus,
+        ).selectAll().toList()
+    }
+
     companion object {
         val EMPLOYEE_TYPE = LiteralOp(ShortColumnType(), 1.toShort())
         val PARTNER_TYPE = LiteralOp(ShortColumnType(), 2.toShort())
@@ -288,5 +296,12 @@ class SelectDataAccessor {
             Employee.departmentId,
             EMPLOYTT_ID_MAX,
         ).selectAll().groupBy(Employee.departmentId).alias("latestEmployeeIdByDepartmentId")
+
+        val caseEnrollmentStatus = Expression.build {
+            Case().When(Employee.enrollmentStatus eq  0, stringLiteral("在籍中"))
+                .When(Employee.enrollmentStatus eq 1, stringLiteral("休職中"))
+                .When(Employee.enrollmentStatus eq 2, stringLiteral("退職済"))
+                .Else(stringLiteral("その他"))
+        }
     }
 }

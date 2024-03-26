@@ -105,5 +105,11 @@ fun Application.configureRouting() {
         get("/employeeFirstNameCharLengthOver3"){
             exposedController.getEmployeeFirstNameCharLengthOver3(call)
         }
+        post("/insertUpdateDeleteEmployee"){
+            exposedController.insertUpdateDeleteEmployee(call)
+        }
+        post("/insertUpdateDeletePartner"){
+            exposedController.insertUpdateDeletePartner(call)
+        }
     }
 }

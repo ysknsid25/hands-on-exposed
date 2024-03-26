@@ -1,11 +1,17 @@
 package example.koin.controller
 
+import example.koin.service.DeleteService
+import example.koin.service.InsertService
 import example.koin.service.SelectService
+import example.koin.service.UpdateService
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 
 class ExposedController(
     private val selectService: SelectService,
+    private val insertService: InsertService,
+    private val updateService: UpdateService,
+    private val deleteService: DeleteService,
 ) {
     suspend fun getInorin(call: ApplicationCall) {
         val message = selectService.getInorin()
@@ -161,6 +167,40 @@ class ExposedController(
 
     suspend fun getEmployeeFirstNameCharLengthOver3(call: ApplicationCall){
         val message = selectService.getEmployeeFirstNameCharLengthOver3()
+        call.respondText(message)
+    }
+
+    suspend fun insertUpdateDeleteEmployee(call: ApplicationCall){
+        val id = 100
+        val departmentId = 1
+        val enrollmentStatus = 1
+        val firstName = "かおり"
+        val lastName = "まえだ"
+        val updatedDepartmentId = 2
+        val updatedEnrollmentStatus = 2
+        val updatedFirstName = "よしの"
+        val updatedLastName = "あおやま"
+        val insertCount = insertService.insertEmployee(id, departmentId, enrollmentStatus, firstName, lastName)
+        val updateCount = updateService.updateEmployee(id, updatedDepartmentId, updatedEnrollmentStatus, updatedFirstName, updatedLastName)
+        val deleteCount = deleteService.deleteEmployee(id)
+        val message = "登録: ${insertCount}件, 更新:${updateCount}件, 削除:${deleteCount}件"
+        call.respondText(message)
+    }
+
+    suspend fun insertUpdateDeletePartner(call: ApplicationCall){
+        val id = 100
+        val departmentId = 1
+        val enrollmentStatus = 1
+        val firstName = "あおい"
+        val lastName = "ゆうき"
+        val updatedDepartmentId = 2
+        val updatedEnrollmentStatus = 2
+        val updatedFirstName = "あやな"
+        val updatedLastName = "たけたつ"
+        val insertCount = insertService.insertPartner(id, departmentId, enrollmentStatus, firstName, lastName)
+        val updateCount = updateService.updatePartner(id, updatedDepartmentId, updatedEnrollmentStatus, updatedFirstName, updatedLastName)
+        val deleteCount = deleteService.deletePartner(id)
+        val message = "登録: ${insertCount}件, 更新:${updateCount}件, 削除:${deleteCount}件"
         call.respondText(message)
     }
 }

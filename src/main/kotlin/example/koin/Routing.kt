@@ -102,5 +102,8 @@ fun Application.configureRouting() {
         get("/employeeFirstNameCharLength"){
             exposedController.getEmployeeFirstNameCharLength(call)
         }
+        get("/employeeFirstNameCharLengthOver3"){
+            exposedController.getEmployeeFirstNameCharLengthOver3(call)
+        }
     }
 }

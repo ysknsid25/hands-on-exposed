@@ -158,4 +158,9 @@ class ExposedController(
         val message = selectService.getEmployeeFirstNameCharLength()
         call.respondText(message)
     }
+
+    suspend fun getEmployeeFirstNameCharLengthOver3(call: ApplicationCall){
+        val message = selectService.getEmployeeFirstNameCharLengthOver3()
+        call.respondText(message)
+    }
 }

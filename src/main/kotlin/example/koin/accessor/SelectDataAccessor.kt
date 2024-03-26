@@ -324,6 +324,12 @@ class SelectDataAccessor {
         ).selectAll().toList()
     }
 
+    fun selectEmployeeFirstNameCharLengthOver3(): List<ResultRow>{
+        return Employee.slice(
+            Employee.firstName,
+        ).select{ employeeFIrstNameCharLength greaterEq intLiteral(3) }.toList()
+    }
+
     companion object {
         val EMPLOYEE_TYPE = LiteralOp(ShortColumnType(), 1.toShort())
         val PARTNER_TYPE = LiteralOp(ShortColumnType(), 2.toShort())

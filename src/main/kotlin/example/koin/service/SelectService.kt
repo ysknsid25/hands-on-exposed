@@ -296,23 +296,33 @@ class SelectService(
     }
 
     fun getEmployeeFirstNameStrByte(): String{
-        val concatPartnerNames = executeQuery {
+        val employeeFirstNameStrByte = executeQuery {
             val resultRows = selectDataAccessor.selectEmployeeFirstNameStrByte()
             resultRows.joinToString {
                 "${it[Employee.firstName]}:${it[SelectDataAccessor.employeeFirstNameStrByte]}"
             }
         }
-        return concatPartnerNames
+        return employeeFirstNameStrByte
     }
 
     fun getEmployeeFirstNameCharLength(): String{
-        val concatPartnerNames = executeQuery {
+        val employeeFirstNameCharLength = executeQuery {
             val resultRows = selectDataAccessor.selectEmployeeFirstNameCharLength()
             resultRows.joinToString {
                 "${it[Employee.firstName]}:${it[SelectDataAccessor.employeeFIrstNameCharLength]}"
             }
         }
-        return concatPartnerNames
+        return employeeFirstNameCharLength
+    }
+
+    fun getEmployeeFirstNameCharLengthOver3(): String{
+        val employeeFirstNameCharLength = executeQuery {
+            val resultRows = selectDataAccessor.selectEmployeeFirstNameCharLengthOver3()
+            resultRows.joinToString {
+                it[Employee.firstName]
+            }
+        }
+        return employeeFirstNameCharLength
     }
 
     enum class EmployeeType(private val value: Short, val typeName: String) {

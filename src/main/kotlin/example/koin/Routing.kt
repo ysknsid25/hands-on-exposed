@@ -111,5 +111,8 @@ fun Application.configureRouting() {
         post("/insertUpdateDeletePartner"){
             exposedController.insertUpdateDeletePartner(call)
         }
+        put("/updateApplyExpenseEmployee"){
+            exposedController.updateApplyExpenseEmployee(call)
+        }
     }
 }

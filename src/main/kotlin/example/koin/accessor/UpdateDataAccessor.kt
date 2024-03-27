@@ -1,8 +1,9 @@
 package example.koin.accessor
 
 import example.koin.data.model.Employee
+import example.koin.data.model.Expense
 import example.koin.data.model.Partner
-import org.jetbrains.exposed.sql.update
+import org.jetbrains.exposed.sql.*
 import java.time.LocalDateTime
 
 class UpdateDataAccessor {
@@ -37,6 +38,15 @@ class UpdateDataAccessor {
             it[Partner.lastName] = lastName
             it[createdAt] = LocalDateTime.now()
             it[updatedAt] = LocalDateTime.now()
+        }
+    }
+
+    fun updateApplyExpenseEmployee(): Int{
+        val existsExpense = exists(Expense.slice(intLiteral(1)).select { Expense.employeeId eq Employee.employeeId})
+        return Employee.update({ existsExpense }){
+            it[Employee.firstName] = Concat(" ", Employee.firstName, stringLiteral("(申請中)"))
+            it[Employee.createdAt] = LocalDateTime.now()
+            it[Employee.updatedAt] = LocalDateTime.now()
         }
     }
 }

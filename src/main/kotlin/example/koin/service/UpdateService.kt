@@ -30,4 +30,10 @@ class UpdateService(
         }
         return resultCount
     }
+
+    fun updateApplyExpenseEmployee(){
+        executeQuery {
+            updateDataAccessor.updateApplyExpenseEmployee()
+        }
+    }
 }

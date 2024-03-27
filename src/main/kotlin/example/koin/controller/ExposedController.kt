@@ -203,4 +203,10 @@ class ExposedController(
         val message = "登録: ${insertCount}件, 更新:${updateCount}件, 削除:${deleteCount}件"
         call.respondText(message)
     }
+
+    suspend fun updateApplyExpenseEmployee(call: ApplicationCall){
+        updateService.updateApplyExpenseEmployee()
+        val message = selectService.getConcatEmployeeNames()
+        call.respondText(message)
+    }
 }

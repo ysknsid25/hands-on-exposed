@@ -27,6 +27,722 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "MyNameIsInorin",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8080/inorin",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"inorin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "partnerNameById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8080/partnerNameById?partnerId=1",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"partnerNameById"
+					],
+					"query": [
+						{
+							"key": "partnerId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "partnerNameByLikeKeyword",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8080/partnerNameByLikeKeyword?lastName=とう",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"partnerNameByLikeKeyword"
+					],
+					"query": [
+						{
+							"key": "lastName",
+							"value": "とう"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "employeeNameOfGeneralOrAccounting",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8080/employeeNameOfGeneralOrAccounting",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"employeeNameOfGeneralOrAccounting"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "employeeBySorted",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8080/employeeBySorted",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"employeeBySorted"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "partnerBySorted",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8080/partnerBySorted",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"partnerBySorted"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "howManyApplyExpenseByEmployee",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8080/howManyApplyExpenseByEmployee",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"howManyApplyExpenseByEmployee"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "howMuchApplyExpenseByEmployee",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8080/howMuchExpenseByEmployee",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"howMuchExpenseByEmployee"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllEmployees",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8080/allEmployees",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"allEmployees"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "employeeLimitOffset",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8080/employeeLimitOffset",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"employeeLimitOffset"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "partnerLimitOffset",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8080/partnerLimitOffset",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"partnerLimitOffset"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "employeeNameAndDepartment",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8080/hasExpenseEmployeeNames",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"hasExpenseEmployeeNames"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "hasExpenseEmployeeNamesWithBetween",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8080/hasExpenseEmployeeNamesWithBetween",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"hasExpenseEmployeeNamesWithBetween"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllEmployeeTypeAndNames",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8080/allEmployeeTypeAndNames",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"allEmployeeTypeAndNames"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "allEmployeeTypeAndNamesDistinct",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8080/allEmployeeTypeAndNamesDistinct",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"allEmployeeTypeAndNamesDistinct"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "hasExpenseEmployeeIdAndNames",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8080/hasExpenseEmployeeIdAndNames",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"hasExpenseEmployeeIdAndNames"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "overExpenseEmployeeIdAndNames",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8080/overExpenseEmployeeIdAndNames",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"overExpenseEmployeeIdAndNames"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "existsOverExpenseEmployeeIdAndNames",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8080/existsOverExpenseEmployeeIdAndNames",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"existsOverExpenseEmployeeIdAndNames"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "latestEmployeeIdByDepartmentId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8080/latestEmployeeIdByDepartmentId",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"latestEmployeeIdByDepartmentId"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "employeeNamesAndEnrollmentStatus",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8080/employeeNamesAndEnrollmentStatus",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"employeeNamesAndEnrollmentStatus"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "partnerNamesAndEnrollmentStatus",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8080/partnerNamesAndEnrollmentStatus",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"partnerNamesAndEnrollmentStatus"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "concatEmployeeNames",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8080/concatEmployeeNames",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"concatEmployeeNames"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "concatPartnerNames",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8080/concatPartnerNames",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"concatPartnerNames"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "employeeFirstNameStrByte",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8080/employeeFirstNameStrByte",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"employeeFirstNameStrByte"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "employeeFirstNameCharLength",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8080/employeeFirstNameCharLength",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"employeeFirstNameCharLength"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "employeeFirstNameCharLengthOver3",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8080/employeeFirstNameCharLengthOver3",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"employeeFirstNameCharLengthOver3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "insertUpdateDeleteEmployee",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8080/insertUpdateDeleteEmployee",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"insertUpdateDeleteEmployee"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "insertUpdateDeletePartner",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8080/insertUpdateDeletePartner",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"insertUpdateDeletePartner"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateApplyExpenseEmployee",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8080/updateApplyExpenseEmployee",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"updateApplyExpenseEmployee"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "allEmployeesNames",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8080/allEmployeesNames",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"allEmployeesNames"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "allPartnersNames",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8080/allPartnersNames",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"allPartnersNames"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllPartners",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8080/allPartners",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"allPartners"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
